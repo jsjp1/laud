@@ -44,8 +44,8 @@ int CliController::run(int argc, char *argv[]) {
       return EXIT_FAILURE;
     }
 
-    std::string ip = argv[2];
-    int port = std::stoi(argv[3]);
+    const char *ip = argv[2];
+    const char *port = argv[3];
 
     runConnect(ip, port);
   } else if (arg1 == "--play") {
@@ -82,11 +82,12 @@ void CliController::runRecord(int record_time) {
   audio_manager.terminate();
 }
 
-void CliController::runConnect(const std::string &ip, int port) {
+void CliController::runConnect(const char *ip, const char *port) {
   NetworkManager network_manager;
   network_manager.init();
+  network_manager.setupForP2P(ip, port);
 
-  LOG_INFO("Connect ip and port: ", ip, ":", port);
+  LOG_INFO("Connect to ip and port: ", ip, ":", port);
 }
 
 } // namespace laud

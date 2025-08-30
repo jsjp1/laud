@@ -14,7 +14,7 @@ public:
 private:
   void printHelp() const;
   void runRecord(int record_time);
-  void runConnect(const std::string &ip, int port);
+  void runConnect(const char *ip, const char *port);
 };
 
 } // namespace laud
