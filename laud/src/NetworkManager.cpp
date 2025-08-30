@@ -1,5 +1,6 @@
 #include "NetworkManager.h"
 #include "Logger.h"
+
 #include <thread>
 
 namespace laud {

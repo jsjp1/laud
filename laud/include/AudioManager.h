@@ -2,6 +2,7 @@
 #define __AUDIO_MANAGER_H__
 
 #include "ChannelType.h"
+
 #include <cstdlib>
 #include <vector>
 
