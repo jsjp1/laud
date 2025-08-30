@@ -14,7 +14,7 @@ public:
   ~AudioManager();
 
   void init() const;
-  const std::vector<int16_t> &recordAudio(const int record_time);
+  const std::vector<int16_t> recordAudio(const int record_time);
   void playRecordedAudio(const std::vector<int16_t> &recorded_data,
                          const int record_time);
   void terminate() const;

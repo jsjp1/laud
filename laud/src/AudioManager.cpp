@@ -35,7 +35,7 @@ void AudioManager::init() const {
   LOG_INFO("PortAudio init success.");
 }
 
-const std::vector<int16_t> &AudioManager::recordAudio(const int record_time) {
+const std::vector<int16_t> AudioManager::recordAudio(const int record_time) {
   int total_frames = this->sample_rate * record_time;
   std::vector<int16_t> recorded_data(total_frames);
 
