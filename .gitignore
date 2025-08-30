@@ -43,3 +43,4 @@
 # EDIt
 build/
 .vscode/
+*.py
