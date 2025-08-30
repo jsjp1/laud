@@ -5,13 +5,22 @@ project(laud VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-file(GLOB LIB_SOURCES laud/*.cpp)
+file(GLOB_RECURSE LIB_SOURCES
+    ${CMAKE_SOURCE_DIR}/laud/src/*.cpp
+)
+
 add_library(laud_lib ${LIB_SOURCES})
 
-target_include_directories(laud_lib PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(laud_lib PUBLIC
+    ${CMAKE_SOURCE_DIR}/laud/include
+)
 
-find_library(PORTAUDIO_LIB portaudio REQUIRED)
+find_library(PORTAUDIO_LIB portaudio)
 
-add_executable(laud laud/main.cpp)
+if(NOT PORTAUDIO_LIB)
+    message(FATAL_ERROR "PortAudio library not found")
+endif()
 
-target_link_libraries(laud PRIVATE ${PORTAUDIO_LIB})
+add_executable(laud ${CMAKE_SOURCE_DIR}/laud/src/main.cpp)
+
+target_link_libraries(laud PRIVATE laud_lib ${PORTAUDIO_LIB})
